@@ -1,0 +1,7 @@
+This is a KNN algorithm
+
+The "para_test.py" is used to test all parameters like K in KNN.
+
+The "cifar_knn.py" is used to test whether it works.
+
+Can run "cifar_knn" directly. (don't have to be after "para_test")
