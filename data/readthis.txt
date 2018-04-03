@@ -1,0 +1,9 @@
+You can download data from
+
+http://www.cs.toronto.edu/~kriz/cifar.html
+
+Unzip it and put in this dictionary.
+
+[NOTE:]
+
+Only after download datas can codes in this project run.
