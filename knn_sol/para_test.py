@@ -7,7 +7,8 @@ def load_train_dicts(name):
     dict1 = pk.load(file1, encoding="bytes")
     return dict1
 
-def show_by_cv2(img1, name, enlarge=1):
+def show_by_cv2(img, name, enlarge=1):
+    img1 = np.copy(img)
     img1 = change_to_2D(img1)
     img1[:,:,[0, 2]] = img1[:,:,[2, 0]]
     if not enlarge == 1:
@@ -50,7 +51,7 @@ def main():
     train_dicts = []
     for i in range(1, 6):
         train_dicts.append(load_train_dicts("../data/data_batch_" + str(i)))
-    # show_firstN_pics(10, 3, train_dicts)
+    show_firstN_pics(10, 3, train_dicts)
     train_datas = []
     for train_dict in train_dicts:
         train_datas.append(train_dict[b"data"])
