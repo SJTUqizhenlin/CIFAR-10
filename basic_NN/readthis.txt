@@ -1,0 +1,8 @@
+This is a complement of two-layer NN(neural network)
+
+"NN_train" can be run to get result of some parameter matrices.
+
+"NN_test" is to test the accuracy on test-batch
+
+###
+final accuracy is about 48.1%
