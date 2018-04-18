@@ -1,0 +1,8 @@
+This is a solution to cifar10, in which HOG and 2_layer NN are used.
+(HOG: Histogram of Oriented Gradient, NN: Neural Network)
+
+To test this, "extract_HOG" should be run firstly, and then
+"hog_train", "hog_test"
+
+###
+final accuracy is about 49.4%
