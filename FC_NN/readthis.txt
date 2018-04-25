@@ -1,0 +1,6 @@
+This is an implement of 3-layer Fully-Connected-NN
+
+Using relu-unit, and softmax loss.
+
+###
+Final accuracy is 53.9%
