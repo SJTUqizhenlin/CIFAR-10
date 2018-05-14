@@ -142,7 +142,7 @@ def main():
     loss_list_t = []
     acc_list_v = []
     acc_list_t = []
-    for loop in range(500):
+    for loop in range(250):
         data_list = []
         fetch_data(data_list, loop % 5)
         random.shuffle(data_list)
@@ -173,10 +173,10 @@ def main():
     fig2 = fig.add_subplot(2,1,2) #loss
     fig1.set(ylabel="acc")
     fig2.set(ylabel="loss")
-    fig1.plot(range(501), acc_list_v, label="valid", color="blue")
-    fig1.plot(range(501), acc_list_t, label="test", color="red")
-    fig2.plot(range(501), loss_list_v, label="valid", color="blue")
-    fig2.plot(range(501), loss_list_t, label="test", color="red")
+    fig1.plot(range(251), acc_list_v, label="valid", color="blue")
+    fig1.plot(range(251), acc_list_t, label="test", color="red")
+    fig2.plot(range(251), loss_list_v, label="valid", color="blue")
+    fig2.plot(range(251), loss_list_t, label="test", color="red")
     plt.legend()
     plt.show()
     print("Memery recovering......")
