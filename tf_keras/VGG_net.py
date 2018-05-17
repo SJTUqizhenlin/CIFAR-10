@@ -34,28 +34,33 @@ vgg_model = keras.models.Sequential()
 
 vgg_model.add(keras.layers.Conv2D(filters=32, kernel_size=(3,3), 
                 padding="valid", data_format="channels_first", 
-                activation="selu", input_shape=(3,32,32)))  # 32,30,30
+                activation="relu", input_shape=(3,32,32)))  # 32,30,30
+vgg_model.add(keras.layers.BatchNormalization(axis=1))
 vgg_model.add(keras.layers.Conv2D(filters=32, kernel_size=(3,3), 
                 padding="valid", data_format="channels_first", 
-                activation="selu"))  # 64,28,28
+                activation="relu"))  # 64,28,28
 vgg_model.add(keras.layers.MaxPool2D(data_format="channels_first"))
 vgg_model.add(keras.layers.Dropout(0.25))
 
+vgg_model.add(keras.layers.BatchNormalization(axis=1))
 vgg_model.add(keras.layers.Conv2D(filters=64, kernel_size=(3,3), 
                 padding="valid", data_format="channels_first", 
-                activation="selu"))  # 64,12,12
+                activation="relu"))  # 64,12,12
+vgg_model.add(keras.layers.BatchNormalization(axis=1))
 vgg_model.add(keras.layers.Conv2D(filters=64, kernel_size=(3,3), 
                 padding="valid", data_format="channels_first", 
-                activation="selu"))  # 64,10,10
+                activation="relu"))  # 64,10,10
 vgg_model.add(keras.layers.MaxPool2D(data_format="channels_first"))
 vgg_model.add(keras.layers.Dropout(0.25))
 
+vgg_model.add(keras.layers.BatchNormalization(axis=1))
 vgg_model.add(keras.layers.Conv2D(filters=128, kernel_size=(3,3), 
                 padding="valid", data_format="channels_first", 
-                activation="selu"))  # 128,3,3
+                activation="relu"))  # 128,3,3
+vgg_model.add(keras.layers.BatchNormalization(axis=1))
 vgg_model.add(keras.layers.Conv2D(filters=256, kernel_size=(3,3), 
                 padding="valid", data_format="channels_first", 
-                activation="selu"))  # 256,1,1
+                activation="relu"))  # 256,1,1
 vgg_model.add(keras.layers.Dropout(0.5))
 
 vgg_model.add(keras.layers.Flatten()) # 256,
