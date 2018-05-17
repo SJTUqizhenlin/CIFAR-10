@@ -33,6 +33,6 @@ print("accuracy:", res[1])
 ###
 """
 This VGG-like model on cifar-10
-gets 82.0% test accuracy.
+gets 85.4% test accuracy.
 """
 ###
