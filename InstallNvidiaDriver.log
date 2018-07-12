@@ -1,0 +1,71 @@
+先看看本机的显卡：
+spci |grep -i nvidia
+
+
+一、安装显卡驱动：
+1、准备工作
+先卸载你电脑中此刻有的nvidia的驱动：
+sudo apt-get remove –purge nvidia*
+
+再添加一个PPA到系统，等一下安装驱动要用的。
+sudo add-apt-repository ppa:graphics-drivers/ppa
+
+最后sudo apt-get update，重启电脑。
+
+
+2、安装驱动
+CTRL+ATL+F1进入终端1（输入用户名和密码后和终端很相似，可以大胆进去）
+sudo service lightdm stop（关闭图形界面） 
+sudo apt-get install nvidia-384（自动下载驱动安装,nvidia-384要和显卡型号匹配）
+sudo service lightdm start来启动图形界面，并且登录。这个时候应该又回到图形界面。
+测试有没安装成功：
+nvidia-smi来看是不是能够输出你的GPU的一些信息。要是不能够输出的话，重启。能够输出的话，也建议重启一次。
+
+二、安装CUDA
+1、官网下载cuda的驱动，
+老版本的下载链接：https://developer.nvidia.com/cuda-toolkit-archive
+
+下载installer type:runfile(local)
+
+
+2、sudo chmod 777 cuda_8.0.44_linux.run
+   sudo ./cuda_8.0.44_linux.run
+注意：@有个让你选择是否安装nvidia驱动时，一定要选择否： 
+Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 367.48? 
+因为前面我们已经安装了更加新的nvidia367，所以这里不要选择安装。其余的都直接默认或者选择是即可。
+
+安装完成后，显卡driver版本是9，cuda版本是8。
+
+3、环境变量配置 
+打开~/.bashrc文件： sudo gedit ~/.bashrc 
+将以下内容写入到~/.bashrc尾部：
+export  CUDA_HOME=/usr/local/cuda-8.0
+export  PATH=$CUDA_HOME/bin$PATH
+export  LD_LIBRARY_PATH=$CUDA_HOME/lib64$LD_LIBRARY_PATH
+
+4、测试CUDA
+cuda版本查看：
+nvcc --version
+samples测试：
+cd /usr/local/cuda-8.0/samples/1_Utilities/deviceQuery 
+make 
+sudo ./deviceQuery 
+如果显示一些关于GPU的信息，则说明安装成功。 
+
+
+三、安装cuDNN
+官网下载cuDNN，选择cuDNN vX.X Library for linux下载
+下载后执行：sudo tar -zxvf ./cudnn-8.0-linux-x64-v5.1.tgz
+ cd cuda; sudo cp lib64/lib* /usr/local/cuda/lib64/; 
+   sudo cp include/cudnn.h /usr/local/cuda/include/  
+   更新软连接: cd /usr/local/cuda/lib64/
+   sudo chmod +r libcudnn.so.5.1.10
+   sudo ln -sf libcudnn.so.5.1.10 libcudnn.so.5
+   sudo ln -sf libcudnn.so.5 libcudnn.so
+   sudo ldconfig
+
+
+注意caffe只支持cuDNN5.0版本
+                  tensorflow支持cuDNN6.0版本 
+
+
